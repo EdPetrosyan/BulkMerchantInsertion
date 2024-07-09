@@ -42,7 +42,7 @@ if (listOfMerchants.Count > 0)
             Console.WriteLine($"Merchant With Id: {merchant.PartnerId} already exists");
             continue;
         }
-        int? categoryId = listOfCategories!.FirstOrDefault(x => x.Name == merchant.PartnerCategory)?.Id;
+        int? categoryId = listOfCategories!.FirstOrDefault(x => x.Name.Trim() == merchant.PartnerCategory.Trim())?.Id;
         if (categoryId == null)
         {
             Console.WriteLine($"Category with name {merchant.PartnerCategory} doesn't exists");

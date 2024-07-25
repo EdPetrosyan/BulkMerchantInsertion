@@ -12,7 +12,7 @@ _ = new CsvConfiguration(CultureInfo.InvariantCulture)
 
 List<MerchantFromCsv> listOfMerchants = [];
 
-using (var reader = new StreamReader("C:\\Users\\Eduard H. Petrosyan\\Desktop\\100 merchant's info_V2.txt"))
+using (var reader = new StreamReader("C:\\Users\\Eduard H. Petrosyan\\Desktop\\E-commerce.txt"))
 using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
 {
     var records = csv.GetRecords<MerchantFromCsv>();

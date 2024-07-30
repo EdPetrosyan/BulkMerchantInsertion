@@ -12,7 +12,7 @@ _ = new CsvConfiguration(CultureInfo.InvariantCulture)
 
 List<MerchantFromCsv> listOfMerchants = [];
 
-using (var reader = new StreamReader("C:\\Users\\Eduard H. Petrosyan\\Desktop\\E-commerce.txt"))
+using (var reader = new StreamReader("C:\\Users\\Eduard H. Petrosyan\\Desktop\\2000merchants.txt"))
 using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
 {
     var records = csv.GetRecords<MerchantFromCsv>();
@@ -23,7 +23,7 @@ if (listOfMerchants.Count > 0)
 {
     using HttpClient httpClient = new()
     {
-        BaseAddress = new Uri("https://dgpaypartners.stg.ameriabank.am/api/")
+        BaseAddress = new Uri("https://dgpaypartners.ameriabank.am/api/")
     };
     var categories = await httpClient.GetAsync("v1/Category");
     var listOfCategories = await categories.Content.ReadFromJsonAsync<List<Category>>();
@@ -69,6 +69,10 @@ if (listOfMerchants.Count > 0)
                     }
 
                     newGroup = await groupResponse.Content.ReadFromJsonAsync<Group>();
+                    if (newGroup != null)
+                    {
+                        listOfGroups.Groups.Add(newGroup);
+                    }
                     groupId = newGroup!.Id;
                 }
                 catch (Exception ex)
